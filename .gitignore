@@ -4,13 +4,12 @@ __pycache__/
 *.pyo
 .venv/
 venv/
+.playwright/
 .pytest_cache/
 
 # Lab artifacts (generated)
 benchmarks/*.csv
 benchmarks/*.json
-submission/screenshots/*.png
-submission/screenshots/*.jpg
 
 # Local OS junk
 .DS_Store

@@ -11,7 +11,6 @@ import sys
 import structlog
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
-from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
@@ -69,10 +68,6 @@ def setup_otel() -> None:
         BatchSpanProcessor(OTLPSpanExporter(endpoint=endpoint, insecure=True))
     )
     trace.set_tracer_provider(provider)
-    # Auto-instrument FastAPI handlers (creates server spans for every route)
-    from fastapi import FastAPI  # local import: only needed at setup
-
-    FastAPIInstrumentor().instrument()
     _configure_logging()
 
 
